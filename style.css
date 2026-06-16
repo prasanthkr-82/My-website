@@ -1,0 +1,226 @@
+/* Global Styles */
+body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+nav { background: #333; color: white; display: flex; justify-content: space-between; padding: 1rem 5%; align-items: center; }
+nav ul { list-style: none; display: flex; }
+nav ul li { margin-left: 20px; }
+nav ul li a { color: white; text-decoration: none; }
+
+/* Sections */
+.hero { height: 60vh; background: #f4f4f4; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.content-section { padding: 50px 10%; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+
+/* Gallery */
+/* .gallery-grid img { width: 100%; border-radius: 8px; transition: transform 0.3s; }
+.gallery-grid img:hover { transform: scale(1.05); } */
+/* Gallery Section Container */
+.gallery-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.gallery-subtitle {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Responsive CSS Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Individual Figure Card */
+.gallery-item {
+    margin: 0;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image Scaling and Fit */
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* Prevents stretching or distortion */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Caption Block Text */
+.gallery-item figcaption {
+    padding: 15px 20px;
+    text-align: left;
+}
+
+.gallery-item figcaption h4 {
+    margin: 0 0 5px 0;
+    color: #222;
+    font-size: 1.1rem;
+}
+
+.gallery-item figcaption p {
+    margin: 0;
+    color: #777;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Hover Interaction Effects (Great for testing page updates) */
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Footer */
+/* Footer Base Styling */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 0 20px 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Layout Grid for Columns */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* Column Specific Styles */
+.footer-column h3 {
+    color: #ff9f43; /* Warm accent color */
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+    line-height: 1.6;
+    color: #bbb;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Link Hover Effect */
+.footer-column ul li a:hover {
+    color: #ff9f43;
+}
+
+/* Bottom Copyright Bar */
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    color: #888;
+}
+
+/* Contact Section */
+.contact-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    font-family: Arial, sans-serif;
+}
+
+.contact-section h2 { margin-bottom: 5px; color: #333; }
+.contact-section p { margin-bottom: 30px; color: #666; font-size: 14px; }
+
+/* Form Field Groups */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 14px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: #ff9f43; /* Focus Ring matching branding colors */
+    outline: none;
+}
+
+/* Validation Errors */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Form Action Buttons */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #ff9f43;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover { background-color: #e68a2e; }
+.submit-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
+
+/* Status Notification Alerts */
+.form-status { margin-top: 20px; padding: 12px; border-radius: 6px; font-size: 14px; display: none; }
+.form-status.success { display: block; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; text-align: center; }
