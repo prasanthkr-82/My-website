@@ -91,6 +91,8 @@ function initGalleryPopup() {
     return;
   }
 
+  const pageMain = document.querySelector('main') || document.body;
+
   const slides = Array.from(galleryImages).map((img, index) => ({
     thumb: img.src,
     large: img.dataset.large || img.src,
@@ -100,6 +102,7 @@ function initGalleryPopup() {
   if (!slides.length) return;
 
   let activeIndex = 0;
+  let previouslyFocused = null;
 
   function buildGallery() {
     track.innerHTML = slides
@@ -122,6 +125,14 @@ function initGalleryPopup() {
         `
       )
       .join('');
+
+    // Preload large images (deferred slightly to avoid blocking)
+    setTimeout(() => {
+      slides.forEach(s => {
+        const img = new Image();
+        img.src = s.large;
+      });
+    }, 300);
   }
 
   function updateGallery() {
@@ -134,20 +145,50 @@ function initGalleryPopup() {
     });
   }
 
+  function trapFocus(e) {
+    if (!modal.classList.contains('is-open')) return;
+    const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) { // shift + tab
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else { // tab
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  }
+
   function openGallery(index) {
     if (index < 0 || index >= slides.length) return;
 
+    previouslyFocused = document.activeElement;
     activeIndex = index;
     updateGallery();
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
+    pageMain.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'hidden';
+    // focus the close button for accessibility
+    closeButton.focus();
+    document.addEventListener('keydown', trapFocus);
   }
 
   function closeGallery() {
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
+    pageMain.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = '';
+    document.removeEventListener('keydown', trapFocus);
+    if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
   }
 
   function showNextImage() {
@@ -158,6 +199,30 @@ function initGalleryPopup() {
   function showPrevImage() {
     activeIndex = (activeIndex - 1 + slides.length) % slides.length;
     updateGallery();
+  }
+
+  // Swipe handling (pointer events)
+  let startX = 0;
+  let isPointerDown = false;
+
+  function onPointerDown(e) {
+    isPointerDown = true;
+    startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+  }
+
+  function onPointerMove(e) {
+    if (!isPointerDown) return;
+    // no-op for now; could implement drag preview
+  }
+
+  function onPointerUp(e) {
+    if (!isPointerDown) return;
+    const endX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX) || 0;
+    const dx = endX - startX;
+    const threshold = 50; // px
+    if (dx < -threshold) showNextImage();
+    if (dx > threshold) showPrevImage();
+    isPointerDown = false;
   }
 
   galleryImages.forEach((img, index) => {
@@ -174,6 +239,16 @@ function initGalleryPopup() {
     if (!thumb) return;
     openGallery(Number(thumb.dataset.index));
   });
+
+  // pointer/touch events for swipe gestures
+  track.addEventListener('pointerdown', onPointerDown);
+  track.addEventListener('pointermove', onPointerMove);
+  track.addEventListener('pointerup', onPointerUp);
+  track.addEventListener('pointercancel', () => { isPointerDown = false; });
+  // fallback touch events
+  track.addEventListener('touchstart', onPointerDown);
+  track.addEventListener('touchmove', onPointerMove);
+  track.addEventListener('touchend', onPointerUp);
 
   document.addEventListener('keydown', (event) => {
     if (!modal.classList.contains('is-open')) return;
