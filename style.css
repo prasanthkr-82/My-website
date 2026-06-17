@@ -58,6 +58,127 @@ nav ul li a { color: white; text-decoration: none; }
     object-fit: cover; /* Prevents stretching or distortion */
     display: block;
     transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.gallery-modal.is-open {
+    display: flex;
+}
+
+.gallery-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.gallery-modal__dialog {
+    position: relative;
+    width: min(100%, 1100px);
+    max-height: 90vh;
+    background: #111;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.gallery-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.gallery-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.gallery-slider__track {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-slide {
+    min-width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-slide.is-active {
+    display: flex;
+}
+
+.gallery-slide img {
+    max-width: 100%;
+    max-height: 72vh;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.gallery-slider__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.gallery-slider__nav--prev {
+    left: 1rem;
+}
+
+.gallery-slider__nav--next {
+    right: 1rem;
+}
+
+.gallery-modal__thumbs {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+.gallery-thumb {
+    width: 64px;
+    height: 48px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.gallery-thumb.is-active {
+    border-color: #ff9f43;
 }
 
 /* Caption Block Text */

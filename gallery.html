@@ -32,7 +32,9 @@
 
             <div class="gallery-grid">
                 <figure class="gallery-item">
-                    <img src="https://picsum.photos/600/400?random=1" alt="Authentic Montessori Apparatus Training">
+                    <img src="https://picsum.photos/600/400?random=1"
+                        data-large="https://picsum.photos/1200/800?random=1"
+                        alt="Authentic Montessori Apparatus Training">
                     <figcaption>
                         <h4>Practical Learning Lab</h4>
                         <p>Working with sensory development tools.</p>
@@ -40,7 +42,8 @@
                 </figure>
 
                 <figure class="gallery-item">
-                    <img src="https://picsum.photos/600/400?random=2" alt="Teachers Practical Workshop">
+                    <img src="https://picsum.photos/600/400?random=2"
+                        data-large="https://picsum.photos/1200/800?random=2" alt="Teachers Practical Workshop">
                     <figcaption>
                         <h4>Hands-on Workshops</h4>
                         <p>In-person sessions for our online batches.</p>
@@ -48,7 +51,8 @@
                 </figure>
 
                 <figure class="gallery-item">
-                    <img src="https://picsum.photos/600/400?random=3" alt="Montessori Classroom Setup">
+                    <img src="https://picsum.photos/600/400?random=3"
+                        data-large="https://picsum.photos/1200/800?random=3" alt="Montessori Classroom Setup">
                     <figcaption>
                         <h4>Child-Centric Environment</h4>
                         <p>Designed for focus and creative exploration.</p>
@@ -56,7 +60,8 @@
                 </figure>
 
                 <figure class="gallery-item">
-                    <img src="https://picsum.photos/600/400?random=4" alt="Soft Skill & Language Class">
+                    <img src="https://picsum.photos/600/400?random=4"
+                        data-large="https://picsum.photos/1200/800?random=4" alt="Soft Skill & Language Class">
                     <figcaption>
                         <h4>Communicative English Batch</h4>
                         <p>Enhancing professional classroom speech skills.</p>
@@ -64,7 +69,8 @@
                 </figure>
 
                 <figure class="gallery-item">
-                    <img src="https://picsum.photos/600/400?random=5" alt="Parenting Workshop Session">
+                    <img src="https://picsum.photos/600/400?random=5"
+                        data-large="https://picsum.photos/1200/800?random=5" alt="Parenting Workshop Session">
                     <figcaption>
                         <h4>Parenting Seminars</h4>
                         <p>Collaborative community growth workshops.</p>
@@ -72,12 +78,31 @@
                 </figure>
 
                 <figure class="gallery-item">
-                    <img src="https://picsum.photos/600/400?random=6" alt="Montessori Materials Showcase">
+                    <img src="https://picsum.photos/600/400?random=6"
+                        data-large="https://picsum.photos/1200/800?random=6" alt="Montessori Materials Showcase">
                     <figcaption>
                         <h4>Merchandise & Apparatus</h4>
                         <p>Premium tactile tools for concrete understanding.</p>
                     </figcaption>
                 </figure>
+            </div>
+            <div class="gallery-modal" id="galleryModal" aria-hidden="true">
+                <div class="gallery-modal__backdrop" id="galleryBackdrop"></div>
+                <div class="gallery-modal__dialog" role="dialog" aria-modal="true">
+                    <button class="gallery-modal__close" id="galleryClose" aria-label="Close">&times;</button>
+
+                    <div class="gallery-slider">
+                        <button class="gallery-slider__nav gallery-slider__nav--prev" id="sliderPrev"
+                            aria-label="Previous image">&#10094;</button>
+
+                        <div class="gallery-slider__track" id="galleryTrack"></div>
+
+                        <button class="gallery-slider__nav gallery-slider__nav--next" id="sliderNext"
+                            aria-label="Next image">&#10095;</button>
+                    </div>
+
+                    <div class="gallery-modal__thumbs" id="galleryThumbs"></div>
+                </div>
             </div>
         </section>
     </main>
@@ -113,7 +138,7 @@
             <p>&copy; 2026 My Site. All Rights Reserved.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 
 </html>
